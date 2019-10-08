@@ -1,0 +1,7 @@
+logger:
+  level: Debug
+  output: serv.log
+flags:
+  rootdir: "./www"
+  addr: "localhost:8080"
+
