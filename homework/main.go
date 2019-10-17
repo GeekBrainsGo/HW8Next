@@ -8,6 +8,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"serv/models"
 	"serv/server"
 
@@ -18,10 +19,14 @@ import (
 const staticDir = "www/static"
 
 func main() {
-	lg := NewLogger()
 	var conf Config
 	if err := conf.ReadConfig("config.yaml"); err != nil {
-		lg.Panic("Can't read config: ", err)
+		panic(fmt.Sprintf("Can't read config: %s", err))
+	}
+
+	err, lg := NewLogger(conf.Logger)
+	if err != nil {
+		panic(fmt.Sprintf("Can't create logger: %s", err))
 	}
 
 	ctx := context.Background()

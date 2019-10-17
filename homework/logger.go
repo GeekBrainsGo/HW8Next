@@ -3,10 +3,14 @@ package main
 import "github.com/sirupsen/logrus"
 
 //NewLogger - Creates and returns new logger
-func NewLogger() *logrus.Logger {
+func NewLogger(conf LoggerConfig) (error, *logrus.Logger) {
 	lg := logrus.New()
 	lg.SetReportCaller(false)
 	lg.SetFormatter(&logrus.TextFormatter{})
-	lg.SetLevel(logrus.DebugLevel)
-	return lg
+	level, err := logrus.ParseLevel(conf.DebugLevel)
+	if err != nil {
+		return err, nil
+	}
+	lg.SetLevel(level)
+	return nil, lg
 }

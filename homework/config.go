@@ -17,6 +17,10 @@ type ServerConfig struct {
 	MongoDB string `yaml:"mongodb"`
 }
 
+type LoggerConfig struct {
+	DebugLevel string `yaml:"debuglevel"`
+}
+
 func (c *Config) ReadConfig(path string) error {
 	f, err := os.Open(path)
 	if err != nil {

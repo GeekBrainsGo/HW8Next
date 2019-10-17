@@ -1,6 +1,5 @@
 logger:
-  level: Debug
-  syslog: false
+  debuglevel: Debug
   output: serv.log
 
 server:
