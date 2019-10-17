@@ -1,0 +1,8 @@
+logger:
+  level: Debug
+  syslog: false
+  output: serv.log
+
+server:
+  addr: ':8080'
+  mongodb: 'mongodb://localhost:27017'
