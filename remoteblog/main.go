@@ -24,9 +24,9 @@ import (
 	"context"
 	"flag"
 	"fmt"
-	"remoteblog/server"
 	"os"
 	"os/signal"
+	"remoteblog/server"
 
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -41,7 +41,7 @@ import (
 // @host localhost:8080
 // @BasePath /
 
-func main() {
+func main() { // 6
 	flagConfigPath := flag.String("c", "./config.yaml", "yaml config file path")
 	flag.Parse()
 

@@ -18,9 +18,7 @@
         "/api/v1/docs/swagger.json": {
             "get": {
                 "description": "Returns swagger's json docs",
-                "produces": [
-                    "application/json"
-                ],
+                "produces": ["application/json"],
                 "summary": "returns json docs",
                 "responses": {
                     "200": {
@@ -35,9 +33,7 @@
         "/api/v1/posts": {
             "post": {
                 "description": "Create new post and return json",
-                "produces": [
-                    "application/json"
-                ],
+                "produces": ["application/json"],
                 "summary": "create new post",
                 "parameters": [
                     {
@@ -70,12 +66,8 @@
         "/api/v1/posts/{id}": {
             "put": {
                 "description": "renew post by id",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
                 "summary": "renew post by id",
                 "parameters": [
                     {
@@ -107,12 +99,8 @@
             },
             "delete": {
                 "description": "deletes a post by id",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
+                "consumes": ["application/json"],
+                "produces": ["application/json"],
                 "summary": "deletes a post by id",
                 "parameters": [
                     {
@@ -146,9 +134,7 @@
         "/{template}": {
             "get": {
                 "description": "return templated page if exist",
-                "produces": [
-                    "text/html"
-                ],
+                "produces": ["text/html"],
                 "summary": "serve templated page",
                 "parameters": [
                     {

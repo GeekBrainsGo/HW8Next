@@ -1,12 +1,12 @@
 logger:
-  level: Debug
-  syslog: false
-  output: remoteblog.log
+    level: Debug
+    syslog: false
+    output: remoteblog.log
 
 server:
-  addr: ':8080'
-  rootdir: './www'
-  templatesdir: '/templates'
-  dbname: 'remoteblog'
-  swagurl: 'http://localhost:8080/api/v1/docs/swagger.json'
-  swagpath: 'docs/swagger.json'
+    addr: ":8080"
+    rootdir: "./www"
+    templatesdir: "/templates"
+    dbname: "remoteblog"
+    swagurl: "http://localhost:8080/api/v1/docs/swagger.json"
+    swagpath: "docs/swagger.json"

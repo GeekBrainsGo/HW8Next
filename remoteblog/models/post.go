@@ -21,7 +21,7 @@ type Post struct {
 const collection = "posts"
 
 // Insert post to database.
-func (p *Post) Insert(ctx context.Context, db *mongo.Database) error {
+func (p *Post) Insert(ctx context.Context, db *mongo.Database) error { // 2
 	col := db.Collection(collection)
 	res, err := col.InsertOne(ctx, p)
 	if err != nil {
@@ -32,21 +32,21 @@ func (p *Post) Insert(ctx context.Context, db *mongo.Database) error {
 }
 
 // Update updates post in database.
-func (p *Post) Update(ctx context.Context, db *mongo.Database) (*Post, error) {
+func (p *Post) Update(ctx context.Context, db *mongo.Database) (*Post, error) { // 1
 	col := db.Collection(collection)
 	_, err := col.ReplaceOne(ctx, bson.M{"_id": p.ID}, p)
 	return p, err
 }
 
 // Delete deletes post from database.
-func (p *Post) Delete(ctx context.Context, db *mongo.Database) (*Post, error) {
+func (p *Post) Delete(ctx context.Context, db *mongo.Database) (*Post, error) { // 1
 	col := db.Collection(collection)
 	_, err := col.DeleteOne(ctx, bson.M{"_id": p.ID})
 	return p, err
 }
 
 // AllPosts return all posts from database.
-func AllPosts(ctx context.Context, db *mongo.Database) ([]Post, error) {
+func AllPosts(ctx context.Context, db *mongo.Database) ([]Post, error) { // 3
 	col := db.Collection(collection)
 	options := options.Find()
 	options.SetLimit(20)
@@ -65,7 +65,7 @@ func AllPosts(ctx context.Context, db *mongo.Database) ([]Post, error) {
 }
 
 // GetPost gets post by id.
-func GetPost(ctx context.Context, db *mongo.Database, id string) (*Post, error) {
+func GetPost(ctx context.Context, db *mongo.Database, id string) (*Post, error) { // 3
 	col := db.Collection(collection)
 	docID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {

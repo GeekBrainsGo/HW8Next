@@ -14,7 +14,7 @@ type LoggerConfig struct {
 }
 
 // ConfigureLogger sets logger.
-func ConfigureLogger(lc *LoggerConfig) (*logrus.Logger, error) {
+func ConfigureLogger(lc *LoggerConfig) (*logrus.Logger, error) { // 4
 	lg := logrus.New()
 
 	level, err := logrus.ParseLevel(lc.Level)

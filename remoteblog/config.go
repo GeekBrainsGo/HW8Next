@@ -15,7 +15,7 @@ type Config struct {
 }
 
 // ReadConfig reads yaml to app config.
-func ReadConfig(path string) (*Config, error) {
+func ReadConfig(path string) (*Config, error) { // 4
 	f, err := os.Open(path)
 	defer f.Close()
 	if err != nil {

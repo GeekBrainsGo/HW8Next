@@ -6,7 +6,7 @@ import (
 	httpSwagger "github.com/swaggo/http-swagger"
 )
 
-func (s *Server) routes() {
+func (s *Server) routes() { // 1
 	s.mux.Route("/", func(r chi.Router) {
 		r.Get("/", s.IndexHadle)
 		r.Get("/new", s.NewHandle)

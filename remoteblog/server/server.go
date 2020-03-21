@@ -4,8 +4,8 @@ package server
 import (
 	"context"
 	"encoding/json"
-	"remoteblog/models"
 	"net/http"
+	"remoteblog/models"
 
 	"go.mongodb.org/mongo-driver/mongo"
 
@@ -35,7 +35,7 @@ type Server struct {
 }
 
 // New creates new server.
-func New(ctx context.Context, lg *logrus.Logger, conf *Config, db *mongo.Database) *Server {
+func New(ctx context.Context, lg *logrus.Logger, conf *Config, db *mongo.Database) *Server { // 1
 	return &Server{
 		ctx:    ctx,
 		lg:     lg,
@@ -49,7 +49,7 @@ func New(ctx context.Context, lg *logrus.Logger, conf *Config, db *mongo.Databas
 }
 
 // Start starts new server.
-func (s *Server) Start() *Server {
+func (s *Server) Start() *Server { // 2
 	s.server = &http.Server{
 		Addr:    s.config.Addr,
 		Handler: s.mux,
@@ -65,13 +65,13 @@ func (s *Server) Start() *Server {
 }
 
 // Stop stops the server.
-func (s *Server) Stop() error {
+func (s *Server) Stop() error { // 1
 	s.lg.Info("stopping server")
 	return s.server.Shutdown(s.ctx)
 }
 
 // SendErr sends and log error to user.
-func (s *Server) SendErr(w http.ResponseWriter, err error, code int, obj ...interface{}) {
+func (s *Server) SendErr(w http.ResponseWriter, err error, code int, obj ...interface{}) { // 1
 	s.lg.WithField("data", obj).WithError(err).Error("server error")
 	w.WriteHeader(code)
 	errModel := models.ErrorModel{
@@ -85,6 +85,6 @@ func (s *Server) SendErr(w http.ResponseWriter, err error, code int, obj ...inte
 }
 
 // SendInternalErr sends 500 error.
-func (s *Server) SendInternalErr(w http.ResponseWriter, err error, obj ...interface{}) {
+func (s *Server) SendInternalErr(w http.ResponseWriter, err error, obj ...interface{}) { // 1
 	s.SendErr(w, err, http.StatusInternalServerError, obj)
 }

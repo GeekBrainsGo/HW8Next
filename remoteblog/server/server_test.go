@@ -4,11 +4,11 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"remoteblog/models"
-	"remoteblog/server"
 	"html/template"
 	"net/http"
 	"net/http/httptest"
+	"remoteblog/models"
+	"remoteblog/server"
 	"testing"
 
 	"github.com/sirupsen/logrus"
@@ -26,7 +26,7 @@ var testCases = []struct {
 	},
 }
 
-func TestServer(t *testing.T) {
+func TestServer(t *testing.T) { // 8
 	msg := `
 	Description: %s
 	Expected: %q

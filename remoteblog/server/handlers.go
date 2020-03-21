@@ -2,10 +2,10 @@ package server
 
 import (
 	"encoding/json"
-	"remoteblog/models"
 	"html/template"
 	"net/http"
 	"path"
+	"remoteblog/models"
 
 	"github.com/go-chi/chi"
 )
@@ -18,7 +18,7 @@ import (
 // @Failure 500 {string} models.ErrorModel
 // @Produce html
 // @Router /{template} [get]
-func (s *Server) IndexHadle(w http.ResponseWriter, r *http.Request) {
+func (s *Server) IndexHadle(w http.ResponseWriter, r *http.Request) { // 3
 	posts, err := models.AllPosts(s.ctx, s.db)
 	if err != nil {
 		s.SendInternalErr(w, err)
@@ -44,7 +44,7 @@ func (s *Server) IndexHadle(w http.ResponseWriter, r *http.Request) {
 // @Failure 500 {string} models.ErrorModel
 // @Produce html
 // @Router /{template} [get]
-func (s *Server) ViewHandle(w http.ResponseWriter, r *http.Request) {
+func (s *Server) ViewHandle(w http.ResponseWriter, r *http.Request) { // 3
 	id := chi.URLParam(r, "id")
 	post, err := models.GetPost(s.ctx, s.db, id)
 	if err != nil {
@@ -71,7 +71,7 @@ func (s *Server) ViewHandle(w http.ResponseWriter, r *http.Request) {
 // @Failure 500 {string} models.ErrorModel
 // @Produce html
 // @Router /{template} [get]
-func (s *Server) NewHandle(w http.ResponseWriter, r *http.Request) {
+func (s *Server) NewHandle(w http.ResponseWriter, r *http.Request) { // 2
 	templ := template.Must(
 		template.New("page").ParseFiles(
 			path.Join(s.config.Root, s.config.TemplatesDir, "new.tpl"),
@@ -91,7 +91,7 @@ func (s *Server) NewHandle(w http.ResponseWriter, r *http.Request) {
 // @Failure 500 {string} models.ErrorModel
 // @Produce html
 // @Router /{template} [get]
-func (s *Server) EditHandle(w http.ResponseWriter, r *http.Request) {
+func (s *Server) EditHandle(w http.ResponseWriter, r *http.Request) { // 3
 	id := chi.URLParam(r, "id")
 	post, err := models.GetPost(s.ctx, s.db, id)
 	if err != nil {
@@ -118,7 +118,7 @@ func (s *Server) EditHandle(w http.ResponseWriter, r *http.Request) {
 // @Produce json
 // @Param post body models.Post true "title, author, content"
 // @Router /api/v1/posts [post]
-func (s *Server) PostHandle(w http.ResponseWriter, r *http.Request) {
+func (s *Server) PostHandle(w http.ResponseWriter, r *http.Request) { // 3
 	var err error
 	post := &models.Post{}
 	if err = json.NewDecoder(r.Body).Decode(post); err != nil {
@@ -144,7 +144,7 @@ func (s *Server) PostHandle(w http.ResponseWriter, r *http.Request) {
 // @Param id path string true "id of post"
 // @Param post body models.Post true "hex"
 // @Router /api/v1/posts/{id} [delete]
-func (s *Server) DeleteHandle(w http.ResponseWriter, r *http.Request) {
+func (s *Server) DeleteHandle(w http.ResponseWriter, r *http.Request) { // 3
 	var err error
 	post := &models.Post{}
 	if err = json.NewDecoder(r.Body).Decode(post); err != nil {
@@ -167,7 +167,7 @@ func (s *Server) DeleteHandle(w http.ResponseWriter, r *http.Request) {
 // @Param id path string true "id of post"
 // @Param post body models.Post true "title, author, content"
 // @Router /api/v1/posts/{id} [put]
-func (s *Server) PutHandle(w http.ResponseWriter, r *http.Request) {
+func (s *Server) PutHandle(w http.ResponseWriter, r *http.Request) { // 3
 	var err error
 	post := &models.Post{}
 	if err = json.NewDecoder(r.Body).Decode(post); err != nil {
@@ -189,6 +189,6 @@ func (s *Server) PutHandle(w http.ResponseWriter, r *http.Request) {
 // @Produce  json
 // @Success 200 {string} string "ok"
 // @Router /api/v1/docs/swagger.json [get]
-func (s *Server) SwaggerHandle(w http.ResponseWriter, r *http.Request) {
+func (s *Server) SwaggerHandle(w http.ResponseWriter, r *http.Request) { // 1
 	http.ServeFile(w, r, s.config.SwagJSON)
 }
