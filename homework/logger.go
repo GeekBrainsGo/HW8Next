@@ -3,7 +3,7 @@ package main
 import "github.com/sirupsen/logrus"
 
 //NewLogger - Creates and returns new logger
-func NewLogger(conf LoggerConfig) (error, *logrus.Logger) {
+func NewLogger(conf LoggerConfig) (error, *logrus.Logger) { //2
 	lg := logrus.New()
 	lg.SetReportCaller(false)
 	lg.SetFormatter(&logrus.TextFormatter{})

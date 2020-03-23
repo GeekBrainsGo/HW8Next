@@ -21,7 +21,7 @@ type LoggerConfig struct {
 	DebugLevel string `yaml:"debuglevel"`
 }
 
-func (c *Config) ReadConfig(path string) error {
+func (c *Config) ReadConfig(path string) error { //3
 	f, err := os.Open(path)
 	if err != nil {
 		return err

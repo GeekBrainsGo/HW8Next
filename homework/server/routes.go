@@ -5,7 +5,7 @@ import (
 	httpSwagger "github.com/swaggo/http-swagger"
 )
 
-func (serv *Server) bindRoutes(r *chi.Mux) {
+func (serv *Server) bindRoutes(r *chi.Mux) { //1
 	r.Route("/", func(r chi.Router) {
 		r.Route("/api/v1", func(r chi.Router) {
 			r.Get("/docs/*", httpSwagger.Handler(httpSwagger.URL("http://localhost:8080/api/v1/docs/swagger.json")))

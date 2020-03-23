@@ -13,7 +13,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-func TestHandleGetIndex(t *testing.T) {
+func TestHandleGetIndex(t *testing.T) { //2
 	lg := logrus.New()
 	lg.SetLevel(0)
 	db := CreateMongoDb()
@@ -30,7 +30,7 @@ func TestHandleGetIndex(t *testing.T) {
 
 }
 
-func CreateMongoDb() *mongo.Database {
+func CreateMongoDb() *mongo.Database { //2
 	lg := logrus.New()
 	lg.SetReportCaller(false)
 	lg.SetFormatter(&logrus.TextFormatter{})

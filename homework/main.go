@@ -18,7 +18,7 @@ import (
 
 const staticDir = "www/static"
 
-func main() {
+func main() { // 5
 	var conf Config
 	if err := conf.ReadConfig("config.yaml"); err != nil {
 		panic(fmt.Sprintf("Can't read config: %s", err))

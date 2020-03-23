@@ -12,7 +12,7 @@ import (
 	"github.com/go-chi/chi"
 )
 
-func (serv *Server) handleGetIndex(w http.ResponseWriter, r *http.Request) {
+func (serv *Server) handleGetIndex(w http.ResponseWriter, r *http.Request) { //3
 	file, _ := os.Open(filepath.Join(serv.staticDir + "/index.html"))
 	data, _ := ioutil.ReadAll(file)
 	if blogItems, err := models.GetBlogs(nil, serv.db); err != nil {
@@ -27,7 +27,7 @@ func (serv *Server) handleGetIndex(w http.ResponseWriter, r *http.Request) {
 
 }
 
-func (serv *Server) handleGetPost(w http.ResponseWriter, r *http.Request) {
+func (serv *Server) handleGetPost(w http.ResponseWriter, r *http.Request) { //3
 	file, _ := os.Open(filepath.Join(serv.staticDir + "/post.html"))
 	data, _ := ioutil.ReadAll(file)
 	postNumber := chi.URLParam(r, "id")
@@ -42,7 +42,7 @@ func (serv *Server) handleGetPost(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (serv *Server) handleGetEditPost(w http.ResponseWriter, r *http.Request) {
+func (serv *Server) handleGetEditPost(w http.ResponseWriter, r *http.Request) { //3
 	file, _ := os.Open(filepath.Join(serv.staticDir + "/edit.html"))
 	data, _ := ioutil.ReadAll(file)
 	postNumber := chi.URLParam(r, "id")
@@ -65,7 +65,7 @@ func (serv *Server) handleGetEditPost(w http.ResponseWriter, r *http.Request) {
 // @Param website body models.Blog true "Blog json struct"
 // @Success 200 {object} models.Blog
 // @Router /api/v1/posts/ [put]
-func (serv *Server) HandlePostEditPost(w http.ResponseWriter, r *http.Request) {
+func (serv *Server) HandlePostEditPost(w http.ResponseWriter, r *http.Request) { //3
 	var post models.Blog
 	w.Header().Set("Content-Type", "application/json; charset=UTF-8")
 	decoder := json.NewDecoder(r.Body)

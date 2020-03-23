@@ -16,14 +16,14 @@ type Server struct {
 	conf *ServerConfig
 }
 
-func NewServer(conf *ServerConfig, lg *logrus.Logger) *Server {
+func NewServer(conf *ServerConfig, lg *logrus.Logger) *Server { // 1
 	return &Server{
 		lg:   lg,
 		conf: conf,
 	}
 }
 
-func (serv *Server) Start() error {
+func (serv *Server) Start() error { // 1
 	r := chi.NewMux()
 	r.Route("/", func(r chi.Router) {
 		r.Get("/", serv.HandleGetIndex)

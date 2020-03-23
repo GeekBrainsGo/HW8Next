@@ -20,7 +20,7 @@ type Server struct {
 }
 
 //New - creates and returns new server
-func New(lg *logrus.Logger, db *mongo.Database, staticDir string) *Server {
+func New(lg *logrus.Logger, db *mongo.Database, staticDir string) *Server { //1
 	return &Server{
 		lg:        lg,
 		db:        db,
@@ -29,7 +29,7 @@ func New(lg *logrus.Logger, db *mongo.Database, staticDir string) *Server {
 }
 
 //Start - starts the server
-func (serv *Server) Start(addr string) error {
+func (serv *Server) Start(addr string) error { //1
 	r := chi.NewRouter()
 	serv.bindRoutes(r)
 
@@ -42,7 +42,7 @@ func (serv *Server) Start(addr string) error {
 }
 
 //FileServer starts file server for static contents
-func FileServer(r chi.Router, path string, root http.FileSystem) {
+func FileServer(r chi.Router, path string, root http.FileSystem) { //3
 	if strings.ContainsAny(path, "{}*") {
 		panic("FileServer does not permit URL parameters.")
 	}

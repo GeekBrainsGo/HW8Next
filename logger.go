@@ -13,7 +13,7 @@ type LoggerConfig struct {
 	Output string `yaml:"output"`
 }
 
-func ConfigureLogger(conf *LoggerConfig) (*logrus.Logger, error) {
+func ConfigureLogger(conf *LoggerConfig) (*logrus.Logger, error) { //6
 	lg := logrus.New()
 
 	level, err := logrus.ParseLevel(conf.Level)

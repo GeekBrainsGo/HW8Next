@@ -17,11 +17,11 @@ type Blog struct {
 
 type Blogs []Blog
 
-func (b *Blog) GetMongoCollectionName() string {
+func (b *Blog) GetMongoCollectionName() string { //1
 	return "blogs"
 }
 
-func GetBlogs(ctx context.Context, db *mongo.Database) (Blogs, error) {
+func GetBlogs(ctx context.Context, db *mongo.Database) (Blogs, error) { //3
 	b := Blog{}
 	col := db.Collection(b.GetMongoCollectionName())
 
@@ -38,7 +38,7 @@ func GetBlogs(ctx context.Context, db *mongo.Database) (Blogs, error) {
 	return blogs, nil
 }
 
-func (b *Blog) Insert(ctx context.Context, db *mongo.Database) (*Blog, error) {
+func (b *Blog) Insert(ctx context.Context, db *mongo.Database) (*Blog, error) { //3
 	col := db.Collection(b.GetMongoCollectionName())
 	res, err := col.InsertOne(ctx, b)
 	if err != nil {
@@ -52,7 +52,7 @@ func (b *Blog) Insert(ctx context.Context, db *mongo.Database) (*Blog, error) {
 	return inserted, nil
 }
 
-func FindBlog(ctx context.Context, db *mongo.Database, id string) (*Blog, error) {
+func FindBlog(ctx context.Context, db *mongo.Database, id string) (*Blog, error) { //3
 	b := Blog{}
 	col := db.Collection(b.GetMongoCollectionName())
 	docID, err := primitive.ObjectIDFromHex(id)
@@ -66,13 +66,13 @@ func FindBlog(ctx context.Context, db *mongo.Database, id string) (*Blog, error)
 	return &b, nil
 }
 
-func (b *Blog) Update(ctx context.Context, db *mongo.Database) (*Blog, error) {
+func (b *Blog) Update(ctx context.Context, db *mongo.Database) (*Blog, error) { //1
 	col := db.Collection(b.GetMongoCollectionName())
 	_, err := col.ReplaceOne(ctx, bson.M{"_id": b.ID}, b)
 	return b, err
 }
 
-func (b *Blog) Delete(ctx context.Context, db *mongo.Database) (*Blog, error) {
+func (b *Blog) Delete(ctx context.Context, db *mongo.Database) (*Blog, error) { //1
 	col := db.Collection(b.GetMongoCollectionName())
 	_, err := col.DeleteOne(ctx, bson.M{"_id": b.ID})
 	return b, err
