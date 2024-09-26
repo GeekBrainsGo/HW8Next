@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func main() {
+func main() { //4
 	flagConfigPath := flag.String("c", "./config.yaml", "yaml config file path")
 	flag.Parse()
 
